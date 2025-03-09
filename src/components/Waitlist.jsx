@@ -3,10 +3,25 @@ import shivamframe3 from "../assets/shivamframe3.png";
 import { useNavigate } from "react-router-dom";
 import emailjs from '@emailjs/browser';
 import { useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Waitlist = () => {
     const Navigate = useNavigate();
     const form = useRef();
+
+    const notify = () => {
+        toast.success('Your email has been added to the waitlist', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
 
 
     const sendEmail = (e) => {
@@ -29,7 +44,9 @@ const Waitlist = () => {
 
 
   return (
+
     <div className="flex">
+      <ToastContainer/>
       <img src={shivamframe3} className="w-1/2 h-screen" alt="img" />
       <div className="flex ml-[250px] justify-center items-center h-screen">
         <div className="w-full max-w-md p-8 rounded-lg">
@@ -60,7 +77,8 @@ const Waitlist = () => {
               className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
             />
 
-            <button
+            <button 
+              onClick={notify}
               type="submit"
               className="mt-6 w-full bg-teal-500 text-white font-semibold py-2 rounded-lg border border-teal-700 hover:bg-teal-600 transition-all"
             >
